@@ -44,4 +44,11 @@ RSpec.describe Order do
     end
   end
 
+  context 'when checking out' do
+    it 'fails if basket is empty' do
+      order = Order.new
+      expect { order.checkout }.to raise_error 'Your basket is empty.'
+    end
+  end
+
 end

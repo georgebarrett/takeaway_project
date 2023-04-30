@@ -22,6 +22,7 @@ class Order
   end
 
   def checkout
+    fail 'Your basket is empty.' if @order.empty? 
   end
 
 end
