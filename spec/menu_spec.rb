@@ -24,7 +24,7 @@ RSpec.describe Menu do
     menu.add_menu(meal_1)
     menu.add_menu(meal_2)
     menu.add_menu(meal_3)
-    expect(menu.show).to eq 'Gyoza - £5.99, Sashimi - £11.99, Katsu Curry - £9.99'
+    expect(menu.show).to eq "Gyoza - £5.99\n Sashimi - £11.99\n Katsu Curry - £9.99"
   end
 
 end
