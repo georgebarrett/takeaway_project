@@ -52,7 +52,7 @@ class Order # main class
   end
 
   def search_menu(search)
-    return @view_menu.search_for_food(search)
+    return @view_menu.search_for_meal(search)
   end
 
   def add_to_order(item)  
@@ -92,7 +92,7 @@ class Menu
   end
 end
 
-class Food
+class Meal
   def initialize(food, price)
     @food = food
     @price = price
