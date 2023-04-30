@@ -103,6 +103,30 @@ RSpec.describe 'integration' do
       order.add_to_order(meal_1)
       order.checkout
     end
+
+    it "lets you checkout an order with mutiple items when the user confirms" do
+      io = double(:io)
+      expect(io).to receive(:puts).with("Here is your final order: ")
+      expect(io).to receive(:puts).with("Katsu Curry - £9.99\n Sashimi - £11.99\n Gyoza - £5.99\n Total: £27.97")
+      expect(io).to receive(:puts).with("To order enter Y, to cancel enter N")
+      expect(io).to receive(:gets).and_return("Y")
+      expect(io).to receive(:puts).with("Order confirmed. Your food will be delivered by drone shortly!")
+  
+      meal_1 = Meal.new("Katsu Curry", 9.99)
+      meal_2 = Meal.new("Sashimi", 11.99)
+      meal_3 = Meal.new("Gyoza", 5.99)
+      
+      menu = Menu.new
+      menu.add_menu(meal_1)
+      menu.add_menu(meal_2)
+      menu.add_menu(meal_3)
+      
+      order = Order.new(io)
+      order.add_to_order(meal_1)
+      order.add_to_order(meal_2)
+      order.add_to_order(meal_3)
+      order.checkout
+    end
   end
 
 end
