@@ -33,7 +33,7 @@ RSpec.describe 'integration' do
   end
 
   context "ordering meals" do
-    it 'adds 1 item to the basket and dsiplays a total price' do
+    it 'adds 1 item to the basket and displays a total price' do
       meal_1 = Meal.new("Sashimi", 11.99)
       
       menu = Menu.new
@@ -42,6 +42,23 @@ RSpec.describe 'integration' do
       order = Order.new
       order.add_to_order(meal_1)
       expect(order.show_basket).to eq "Sashimi - £11.99\n Total: £11.99"
+    end
+
+    it "adds multiple items to the basket and returns the total price" do
+      meal_1 = Meal.new("Katsu Curry", 9.99)
+      meal_2 = Meal.new("Sashimi", 11.99)
+      meal_3 = Meal.new("Gyoza", 5.99)
+      
+      menu = Menu.new
+      menu.add_menu(meal_1)
+      menu.add_menu(meal_2)
+      menu.add_menu(meal_3)
+      
+      order = Order.new
+      order.add_to_order(meal_1)
+      order.add_to_order(meal_2)
+      order.add_to_order(meal_3)
+      expect(order.show_basket).to eq "Katsu Curry - £9.99\n Sashimi - £11.99\n Gyoza - £5.99\n Total: £27.97"
     end
   end
 
