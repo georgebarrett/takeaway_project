@@ -16,6 +16,8 @@ class Order
   end
 
   def show_basket
+    basket = @order.join(', ').tr(",", "\n")
+    return "#{basket}\n Total: £#{@total.round(2)}"
   end
 
   def checkout
