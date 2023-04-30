@@ -22,7 +22,20 @@ class Order
   end
 
   def checkout
-    fail 'Your basket is empty.' if @order.empty? 
+    fail 'Your basket is empty.' if @order.empty?
+    basket = @order.join(', ').tr(",", "\n")
+    @io.puts "Here is your final order: "
+    @io.puts "#{basket}\n Total: £#{@total.round(2)}"
+    @io.puts "To order enter Y, to cancel enter N"
+    confirmation = @io.gets.chomp.upcase
+    confirmation == "N"
+    if confirmation == "N"
+      @io.puts "Exiting checkout"
+    elsif confirmation == "Y"
+      @io.puts "Order confirmed. Your food will be delivered by drone shortly!"
+    else
+      @io.puts "Not a valid input, please restart checkout"
+    end
   end
 
 end
