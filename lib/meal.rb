@@ -9,12 +9,15 @@ class Meal
   end
 
   def show_name
+    @meal_name
   end
 
   def show_price
+    @meal_price
   end
 
   def show_name_and_price
+    return "#{@meal_name} - £#{@meal_price}"
   end
 
 end
