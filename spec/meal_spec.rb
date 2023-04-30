@@ -11,4 +11,10 @@ RSpec.describe Meal do
     expect(meal.show_name_and_price).to eq 'Gyoza - £5.99'
   end
 
+  it 'creates a meal' do
+    meal = Meal.new('Sashimi', 11.99)
+    expect(meal.show_name).to eq 'Sashimi'
+    expect(meal.show_price).to eq 11.99
+  end
+
 end
