@@ -37,6 +37,11 @@ RSpec.describe Order do
       order.add_to_order(meal_3)
       expect(order.show_basket).to eq "Gyoza - £5.99\n Sashimi - £11.99\n Katsu Curry - £9.99\n Total: £27.97"
     end
+
+    it 'fails if no meals are added to order and show_basket is called' do
+      order = Order.new
+      expect { order.show_basket }.to raise_error "Your basket is empty."
+    end
   end
 
 end

@@ -16,6 +16,7 @@ class Order
   end
 
   def show_basket
+    fail 'Your basket is empty.' if @order.empty?
     basket = @order.join(', ').tr(",", "\n")
     return "#{basket}\n Total: £#{@total.round(2)}"
   end
