@@ -18,6 +18,18 @@ RSpec.describe 'integration' do
       menu.add_menu(meal_1)
       expect(menu.show).to eq "Gyoza - £5.99"
     end
+
+    it "adds multiple meals to the menu instance array, with their prices" do
+      meal_1 = Meal.new("Gyoza", 5.99)
+      meal_2 = Meal.new("Katsu Curry", 9.99)
+      meal_3 = Meal.new("Sashimi", 11.99)
+      
+      menu = Menu.new
+      menu.add_menu(meal_1)
+      menu.add_menu(meal_2)
+      menu.add_menu(meal_3)
+      expect(menu.show).to eq "Gyoza - £5.99\n Katsu Curry - £9.99\n Sashimi - £11.99"
+    end
   end
 
 end
