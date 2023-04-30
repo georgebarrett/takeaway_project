@@ -67,6 +67,24 @@ RSpec.describe 'integration' do
       order = Order.new
       expect { order.checkout }.to raise_error "Your basket is empty."
     end
+
+    it "lets you exit checkout is user enters N" do
+      io = double(:io)
+      expect(io).to receive(:puts).with("Here is your final order: ")
+      expect(io).to receive(:puts).with("Sashimi - £11.99\n Total: £11.99")
+      expect(io).to receive(:puts).with("To order enter Y, to cancel enter N")
+      expect(io).to receive(:gets).and_return("N")
+      expect(io).to receive(:puts).with("Exiting checkout")
+  
+      meal_1 = Meal.new("Sashimi", 11.99)
+      
+      menu = Menu.new
+      menu.add_menu(meal_1)
+
+      order = Order.new(io)
+      order.add_to_order(meal_1)
+      order.checkout
+    end
   end
 
 end
