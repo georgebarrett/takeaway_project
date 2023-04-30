@@ -10,8 +10,8 @@ class Menu
   end
 
   def show
-    new_menu = @menu.join(', ').tr(',', '\n')
-    return new_menu
+    new_menu = @menu.join(', ')
+    return "#{new_menu}"
   end
 
 end
